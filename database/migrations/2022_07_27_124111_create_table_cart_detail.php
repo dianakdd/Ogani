@@ -13,7 +13,7 @@ class CreateTableCartDetail extends Migration
      */
     public function up()
     {
-        Schema::create('cartDetail', function (Blueprint $table) {
+        Schema::create('cart_detail', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('cart');
