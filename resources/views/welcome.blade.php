@@ -84,7 +84,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Sanbercode Laravel Kelompok 12
+                Sanbercode Laravel Kelompok 12 Final Project
             </div>
 
             <div class="links">
