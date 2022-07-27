@@ -17,6 +17,10 @@ class CreateOrderDetailTable extends Migration
             $table->bigIncrements('id');
             $table->string('jml');
             $table->double('harga');
+            $table->unsignedBigInteger('produk_id');
+            $table->foreign('produk_id')->references('id')->on('produk');
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('order');
         });
     }
 
