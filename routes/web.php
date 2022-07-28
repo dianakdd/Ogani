@@ -15,7 +15,11 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
-Auth::routes();
 
+
+Auth::routes();
+Route::get('/profile/{user_id}','ProfileController@show');
+Route::get('/profile/{user_id}/edit','ProfileController@edit');
+Route::put('/profile/{user_id}','ProfileController@update');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
