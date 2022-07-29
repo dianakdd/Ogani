@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <form action="/produk" method="POST" enctype="multipart/form-data">
+    <form action="/dashboard" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col-12 grid-margin stretch-card">
             <div class="card">

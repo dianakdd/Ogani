@@ -71,9 +71,9 @@
     <script src="{{ asset('/admin/jsadmin/misc.js') }}"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="{{ asset('/jsadmin/file-upload.js') }}"></script>
-    <script src="{{ asset('/jsadmin/typeahead.js') }}"></script>
-    <script src="{{ asset('/jsadmin/select2.js') }}"></script>
+    <script src="{{ asset('/admin/jsadmin/file-upload.js') }}"></script>
+    <script src="{{ asset('/admin/jsadmin/typeahead.js') }}"></script>
+    <script src="{{ asset('/admin/jsadmin/select2.js') }}"></script>
     <!-- End custom js for this page -->
 
     @stack('scripts')
