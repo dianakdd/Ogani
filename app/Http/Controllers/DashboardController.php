@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Produk;
 use File;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
 class DashboardController extends Controller
 {
    /**
@@ -15,6 +18,7 @@ class DashboardController extends Controller
     public function index()
     {
         $produk = Produk::paginate(5);
+       
         return view('admin.index', compact('produk'));
     }
 
@@ -58,8 +62,10 @@ class DashboardController extends Controller
         $produk->stok = $request->stok;
 
         $produk->save();
+        
 
-        return redirect('/dashboard');
+
+        return redirect('/dashboard')->withSuccess('Product Baru Ditambahkan!');
     }
 
     /**
@@ -125,7 +131,7 @@ class DashboardController extends Controller
 
         $produk->save();
 
-        return redirect('/dashboard');
+        return redirect('/dashboard')->withSuccess('Product Berhasil Di ubah!');
     }
 
     /**
@@ -143,7 +149,7 @@ class DashboardController extends Controller
 
         $produk->delete();
 
-        return redirect('/dashboard');
+        return redirect('/dashboard')->withWarning('Product Dihapus!');
     }
 }
 

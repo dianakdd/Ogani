@@ -284,7 +284,7 @@
     <script src="/js/main.js"></script>
 
     @stack('script')
-
+    @include('sweetalert::alert')
 </body>
 
 </html>

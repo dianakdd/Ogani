@@ -19,11 +19,15 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('/admin/cssadmin/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/admin/vendorsadmin/sweetalerts/sweetalert2.min.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="" />
+
 </head>
 
 <body>
+
+
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
         @include('admin.partials.navbar')
@@ -57,6 +61,7 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('/admin/vendorsadmin/js/vendor.bundle.base.js') }}"></script>
@@ -74,8 +79,11 @@
     <script src="{{ asset('/jsadmin/file-upload.js') }}"></script>
     <script src="{{ asset('/jsadmin/typeahead.js') }}"></script>
     <script src="{{ asset('/jsadmin/select2.js') }}"></script>
-    <!-- End custom js for this page -->
+    <script src="{{ asset('/vendor/sweetalert/sweetalert.all.js') }}"></script>
 
+
+    <!-- End custom js for this page -->
+    @include('sweetalert::alert')
     @stack('scripts')
 </body>
 
