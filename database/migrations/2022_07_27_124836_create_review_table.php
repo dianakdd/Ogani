@@ -14,6 +14,8 @@ class CreateReviewTable extends Migration
     public function up()
     {
         Schema::create('review', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_review');
+            $table->string('nama_review');
             $table->unsignedBigInteger('produk_id');
             $table->foreign('produk_id')->references('id')->on('produk');
             $table->unsignedBigInteger('user_id');
