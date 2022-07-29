@@ -59,7 +59,7 @@ class DashboardController extends Controller
 
         $produk->save();
 
-        return redirect('/produk');
+        return redirect('/dashboard');
     }
 
     /**
@@ -125,7 +125,7 @@ class DashboardController extends Controller
 
         $produk->save();
 
-        return redirect('/produk');
+        return redirect('/dashboard');
     }
 
     /**
@@ -143,7 +143,7 @@ class DashboardController extends Controller
 
         $produk->delete();
 
-        return redirect('/produk');
+        return redirect('/dashboard');
     }
 }
 

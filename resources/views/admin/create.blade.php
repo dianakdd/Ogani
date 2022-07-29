@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <form action="/produk" method="POST" enctype="multipart/form-data">
+    <form action="/dashboard" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
@@ -35,14 +35,11 @@
 
                         <div class="form-group">
                             <label>Gambar</label>
-                            <input type="file" name="gambar" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
+
+
+
+                            <input type="file" name="gambar"class="form-control-file" id="Gambar">
+
                             @error('gambar')
                                 <div class="alert alert-danger alert-dismissible">{{ $message }}</div>
                             @enderror
