@@ -21,14 +21,12 @@ Auth::routes();
 Route::get('/profile/{user_id}','ProfileController@show');
 Route::get('/profile/{user_id}/edit','ProfileController@edit');
 Route::put('/profile/{user_id}','ProfileController@update');
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::group(['middleware' => ['is_admin']], function () {
-    Route::get('/admin','DashboardController@index')->name('admin');
-    Route::get('/admin/order','DashboardController@sales');
-    Route::get('/admin/create', function () {
-        return view('pages.dashboard.create');
-    });
-    Route::get('/admin/member','DashboardController@member');
+    Route::resource('dashboard', 'DashboardController');
     
 });
+
+
+
