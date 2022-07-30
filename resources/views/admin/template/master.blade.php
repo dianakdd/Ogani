@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('/admin/vendorsadmin/sweetalerts/sweetalert2.min.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="" />
+    @stack('css')
 
 </head>
 
