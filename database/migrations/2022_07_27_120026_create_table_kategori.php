@@ -16,8 +16,6 @@ class CreateTableKategori extends Migration
         Schema::create('kategori', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->unsignedBigInteger('produk_id');
-            $table->foreign('produk_id')->references('id')->on('produk');
             $table->timestamps();
         });
     }
