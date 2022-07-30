@@ -10,6 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         $products = Produk::all();
-        return view('pages.index', compact('products'));
+        $counts = Produk::count();
+        return view('pages.index', compact('products', 'counts'));
     }
 }
