@@ -18,6 +18,16 @@ use App\Http\Controllers\HomeController;
 // });
 
 Route::get('/', 'HomeController@index');
+Route::get('/cart', 'CartController@index');
+Route::get('/cart/add', 'CartController@create');
+Route::any('/cart/detail', 'CartController@detail')->name('cart.detail');
+Route::post('/cart/store', 'CartController@store');
+Route::delete('/cart/{id}', 'CartController@destroy');
+Route::get('/cart/{id}/edit', 'CartController@edit');
+Route::post('/cart/update', 'CartController@update');
+Route::get('/cart/checkout', 'CartController@checkout');
+Route::post('/cart/confirm', 'CartController@confirm');
+Route::get('/cart/{id}', 'CartController@save');
 
 
 

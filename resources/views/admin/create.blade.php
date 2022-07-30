@@ -76,7 +76,6 @@
                             <option value="{{ $item->id }}">{{ $item->nama }}</option>
                             @endforeach
                         </select>
-
                     </div>
 
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>

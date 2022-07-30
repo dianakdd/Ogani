@@ -17,6 +17,7 @@ class CreateTableCart extends Migration
             $table->bigIncrements('id');
             $table->integer('jml');
             $table->double('harga');
+            $table->double('total');
             $table->unsignedBigInteger('produk_id');
             $table->foreign('produk_id')->references('id')->on('produk');
             $table->timestamps();

@@ -13,7 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    {{-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> --}}
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}" type="text/css">
@@ -21,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 
 <body>
@@ -38,9 +42,9 @@
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i><span>{{ $counts }}</span></a></li>
+                <li><a href="/cart"><i class="fa fa-shopping-bag"></i><span>{{ $counts }}</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            <div class="header__cart__price">item: <span>Rp. {{ $total }}</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -179,9 +183,9 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>{{ $counts }}</span></a></li>
+                            <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>{{ $counts }}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <div class="header__cart__price">item: <span>Rp. {{ number_format($total) }}</span></div>
                     </div>
                 </div>
             </div>
@@ -273,15 +277,13 @@
     </footer>
     <!-- Footer Section End -->
     {{-- JS Bootstrap --}}
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
     </script>
 
     <!-- Js Plugins -->
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> --}}
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
@@ -289,6 +291,23 @@
     <script src="{{ asset('js/mixitup.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('/admin/vendorsadmin/js/vendor.bundle.base.js') }}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{{ asset('/admin/vendorsadmin/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('/admin/vendorsadmin/typeahead.js/typeahead.bundle.min.js') }}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ asset('/admin/jsadmin/off-canvas.js') }}"></script>
+    <script src="{{ asset('/admin/jsadmin/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('/admin/jsadmin/misc.js') }}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+
+    <script src="{{ asset('/vendor/sweetalert/sweetalert.all.js') }}"></script>
+    <script src="{{ asset('/admin/jsadmin/file-upload.js') }}"></script>
+    <script src="{{ asset('/admin/jsadmin/typeahead.js') }}"></script>
+    <script src="{{ asset('/admin/jsadmin/select2.js') }}"></script>
 
     @stack('script')
     @include('sweetalert::alert')
