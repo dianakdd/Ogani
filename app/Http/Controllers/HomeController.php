@@ -15,4 +15,5 @@ class HomeController extends Controller
         $total = Cart::sum('harga');
         return view('pages.index', compact('products', 'counts', 'total'));
     }
+
 }

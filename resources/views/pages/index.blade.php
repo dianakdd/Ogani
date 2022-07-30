@@ -130,7 +130,7 @@
                         </ul>
                     </div>
                     <div class="featured__item__text">
-                        <h6><a href="#">{{ $product->nama }}</a></h6>
+                        <h6><a href="/produk/{{ $product->id }}">{{ $product->nama }}</a></h6>
                         <h5>Rp. {{ number_format($product->harga) }}</h5>
                     </div>
                 </div>

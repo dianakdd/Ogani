@@ -29,6 +29,8 @@ Route::get('/cart/checkout', 'CartController@checkout');
 Route::post('/cart/confirm', 'CartController@confirm');
 Route::get('/cart/{id}', 'CartController@save');
 
+Route::get('/produk/{id}','ProdukController@index');
+
 
 
 Auth::routes();
