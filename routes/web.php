@@ -18,15 +18,12 @@ Route::get('/', function () {
 
 
 Auth::routes();
-Route::get('/profile/{user_id}','ProfileController@show');
-Route::get('/profile/{user_id}/edit','ProfileController@edit');
-Route::put('/profile/{user_id}','ProfileController@update');
+Route::get('/profile/{user_id}', 'ProfileController@show');
+Route::get('/profile/{user_id}/edit', 'ProfileController@edit');
+Route::put('/profile/{user_id}', 'ProfileController@update');
 
 
 Route::group(['middleware' => ['is_admin']], function () {
     Route::resource('dashboard', 'DashboardController');
-    
+    Route::resource('kategori', 'KategoriController');
 });
-
-
-

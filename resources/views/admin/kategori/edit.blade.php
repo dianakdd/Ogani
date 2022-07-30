@@ -5,20 +5,21 @@
 @endsection
 
 @section('subjudul')
-<h3>Tambahkan Kategori</h3>
+<h3>Edit Kategori</h3>
 @endsection
 
 @section('content')
-<form action="/kategori" method="POST">
+<form action="/kategori/{{ $kategori->id }}" method="POST">
     @csrf
+    @method('PUT')
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Tambahkan Data</h4>
+                <h4 class="card-title">Edit Data</h4>
                 <form class="forms-sample">
                     <div class="form-group">
                         <label for="nama">Nama Kategori</label>
-                        <input type="text" class="form-control" value="{{ old('nama') }}" name="nama" id="nama"
+                        <input type="text" class="form-control" value="{{ $kategori->nama }}" name="nama" id="nama"
                             placeholder="Nama Kategori">
                         @error('nama')
                         <div class="alert alert-danger alert-dismissible">{{ $message }}</div>

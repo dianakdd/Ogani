@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Produk;
 use File;
+use App\Produk;
+use App\Kategori;
+use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
@@ -16,7 +17,8 @@ class ProdukController extends Controller
     public function index()
     {
         $produk = Produk::all();
-        return view('admin.index', compact('produk'));
+        $kategori = Kategori::all();
+        return view('admin.index', compact('produk', 'kategori'));
     }
 
     /**
@@ -45,11 +47,11 @@ class ProdukController extends Controller
             'harga' => 'required',
             'stok' => 'required',
         ]);
-  
-        $NamaGambar = time().'.'.$request->gambar->extension();  
-   
+
+        $NamaGambar = time() . '.' . $request->gambar->extension();
+
         $request->gambar->move(public_path('image'), $NamaGambar);
-   
+
         $produk = new Produk;
 
         $produk->name = $request->name;
@@ -105,19 +107,18 @@ class ProdukController extends Controller
         ]);
 
         $produk = produk::find($id);
-            if ($request->has('gambar')){
-                $path = "image/";
-                File::delete($path . $produk->gambar);
+        if ($request->has('gambar')) {
+            $path = "image/";
+            File::delete($path . $produk->gambar);
 
-                $NamaGambar = time().'.'.$request->gambar->extension();  
-   
-                $request->gambar->move(public_path('image'), $NamaGambar);
-        
-                $produk->gambar = $NamaGambar;
+            $NamaGambar = time() . '.' . $request->gambar->extension();
 
-                $produk->save();
+            $request->gambar->move(public_path('image'), $NamaGambar);
 
-            }
+            $produk->gambar = $NamaGambar;
+
+            $produk->save();
+        }
 
         $produk->name = $request->name;
         $produk->deskripsi = $request->deskripsi;

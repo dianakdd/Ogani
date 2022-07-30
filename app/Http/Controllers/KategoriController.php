@@ -10,29 +10,52 @@ class KategoriController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        return view('admin.index', compact('kategori'));
+        return view('admin.kategori.index', compact('kategori'));
     }
 
     public function create()
     {
         $kategori = Kategori::all();
-        return view('admin.create', compact('kategori'));
+        return view('admin.kategori.create', compact('kategori'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'produk_id' => 'required',
+            'nama' => 'required',
         ]);
 
-        $kategori = new Kategori;
-
-        $kategori->name = $request->name;
-        $kategori->produk_id = $request->produk_id;
-
-        $kategori->save();
+        $kategori = Kategori::insert([
+            'nama' => $request->nama,
+        ]);
 
         return redirect('/kategori')->with('status', 'Data Kategori Berhasil Ditambahkan');
+    }
+
+    public function edit($id)
+    {
+        $kategori = Kategori::find($id);
+        return view('admin.kategori.edit', compact('kategori'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required',
+        ]);
+
+        $kategori = Kategori::find($id);
+        $kategori->nama = $request->nama;
+        $kategori->save();
+
+        return redirect('/kategori')->with('status', 'Data Kategori Berhasil Diubah');
+    }
+
+    public function destroy($id)
+    {
+        $kategori = Kategori::find($id);
+        $kategori->delete();
+
+        return redirect('/kategori')->with('status', 'Data Kategori Berhasil Dihapus');
     }
 }
