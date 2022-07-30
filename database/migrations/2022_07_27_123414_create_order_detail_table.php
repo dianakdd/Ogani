@@ -21,6 +21,7 @@ class CreateOrderDetailTable extends Migration
             $table->foreign('produk_id')->references('id')->on('produk');
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('order');
+            $table->timestamps();
         });
     }
 

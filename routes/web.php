@@ -17,8 +17,14 @@ use App\Http\Controllers\HomeController;
 //     return view('pages.index');
 // });
 
-Route::get('/', 'HomeController@index');
-Route::get('/cart', 'CartController@index');
+Route::get('/', 'HomeController@index')->name('homepage');
+
+
+Route::get('/produk/{id}','ProdukController@show');
+Route::get('/produk','ProdukController@index')->name('produklist');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/cart', 'CartController@index');
 Route::get('/cart/add', 'CartController@create');
 Route::any('/cart/detail', 'CartController@detail')->name('cart.detail');
 Route::post('/cart/store', 'CartController@store');
@@ -28,8 +34,7 @@ Route::post('/cart/update', 'CartController@update');
 Route::get('/cart/checkout', 'CartController@checkout');
 Route::post('/cart/confirm', 'CartController@confirm');
 Route::get('/cart/{id}', 'CartController@save');
-
-Route::get('/produk/{id}','ProdukController@index');
+});
 
 
 

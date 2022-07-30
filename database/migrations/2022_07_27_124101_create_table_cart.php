@@ -15,11 +15,9 @@ class CreateTableCart extends Migration
     {
         Schema::create('cart', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('jml');
-            $table->double('harga');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->double('total');
-            $table->unsignedBigInteger('produk_id');
-            $table->foreign('produk_id')->references('id')->on('produk');
             $table->timestamps();
         });
     }

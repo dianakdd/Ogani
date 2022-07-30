@@ -1,32 +1,27 @@
 @extends('layouts.template')
 
 @section('content')
-   <!-- Product Details Section Begin -->
+    <!-- Product Details Section Begin -->
     <section class="product-details spad">
         <div class="container">
-            @foreach ($products as $product)
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
-                                src="{{asset('image/'. $product->gambar)}}" alt="">
+                            @if (file_exists(public_path('image' . '/' . $products->gambar)))
+                                <img class="product__details__pic__item--large"
+                                    src="{{ asset('image/' . $products->gambar) }}" alt="">
+                            @else
+                                <img class="product__details__pic__item--large" src="{{ $products->gambar }}" alt="">
+                            @endif
+
                         </div>
-                        {{-- <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="img/product/details/product-details-2.jpg"
-                                src="img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-3.jpg"
-                                src="img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-5.jpg"
-                                src="img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-4.jpg"
-                                src="img/product/details/thumb-4.jpg" alt="">
-                        </div> --}}
+
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>{{ $product->nama }}</h3>
+                        <h3>{{ $products->nama }}</h3>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -35,8 +30,8 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        <div class="product__details__price">Rp. {{ number_format($product->harga) }}</div>
-                        <p>{{ $product->deskripsi }}</p>
+                        <div class="product__details__price">Rp. {{ number_format($products->harga) }}</div>
+                        <p>{{ $products->deskripsi }}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -44,7 +39,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/cart/{{ $product->id }}" class="primary-btn">ADD TO CARD</a>
+                        <a href="/cart/{{ $products->id }}" class="primary-btn">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
@@ -62,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+
         </div>
     </section>
     <!-- Product Details Section End -->
@@ -78,7 +73,7 @@
                 </div>
             </div>
             <div class="row">
-                @foreach($products as $product)
+                @foreach ($products as $product)
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="{{ $product->gambar }}">

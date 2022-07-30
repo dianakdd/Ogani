@@ -14,10 +14,15 @@ class CreateTableCartDetail extends Migration
     public function up()
     {
         Schema::create('cart_detail', function (Blueprint $table) {
+            
             $table->bigIncrements('id');
+            $table->integer('jml');
+            $table->double('harga');
+            
             $table->unsignedBigInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('cart');
-            $table->double('total');
+            $table->unsignedBigInteger('produk_id');
+            $table->foreign('produk_id')->references('id')->on('produk');
             $table->timestamps();
         });
     }

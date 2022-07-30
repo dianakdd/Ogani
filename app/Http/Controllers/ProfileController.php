@@ -5,21 +5,46 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
+use App\Cart;
+use App\CartDetail;
 use DB;
 class ProfileController extends Controller
 {
     public function show($id)
     {
         $user = DB::table('users')->where('id', $id)->first();
-        $profile = DB::table('profile')->where('user_id', $id)->first();
+       
+        $usercart =Cart::where('user_id', $id)->first();
+            
+            if($usercart){
+                $cartid =$usercart ->id;
+                $counts = CartDetail::where('cart_id', $cartid)->count();
+                $total = $usercart ->total;
+            }else{
+                $counts = 0;
+                $total = 0;
+            }
+        $profile = DB::table('profile')->where('id', $user->profile_id)->first();
         
-        return view('pages.profile', compact('user','profile'));
+        return view('pages.profile', compact('user','profile', 'counts', 'total'));
     }
     public function edit($id)
     {
         $user = DB::table('users')->where('id', $id)->first();
-        $profile = DB::table('profile')->where('user_id', $id)->first();
-        return view('pages.editProfile', compact('user','profile'));
+       
+        $usercart =Cart::where('user_id', $id)->first();
+            
+            if($usercart){
+                $cartid =$usercart ->id;
+                $counts = CartDetail::where('cart_id', $cartid)->count();
+                $total = $usercart ->total;
+            }else{
+                $counts = 0;
+                $total = 0;
+            }
+        $profile = DB::table('profile')->where('id', $user->profile_id)->first();
+        
+        return view('pages.editProfile', compact('user','profile', 'counts', 'total'));
     }
     public function update(Request $request, $id)
     {
@@ -32,11 +57,15 @@ class ProfileController extends Controller
             'gender'=>'required'
         ]);
         $user = User::find($id);
-        $profile = Profile::firstWhere('user_id', $id);
+        $profile = Profile::firstWhere('id', $user->profile_id);
+    
         if($request->foto){
+            if($profile->foto){
+                unlink(public_path('img/profile/'.$profile->foto));
+            }
             $filename = time().'.'.$request->foto->extension(); 
             $request->foto->move(public_path('img/profile'), $filename);
-            unlink(public_path('img/profile/'.$profile->foto));
+            ;
         }else{
             $filename = null;
         }

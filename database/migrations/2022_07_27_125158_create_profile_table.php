@@ -20,8 +20,7 @@ class CreateProfileTable extends Migration
             $table->char('gender',1)->nullable();
             $table->integer('umur')->nullable();
             $table->string('foto',255)->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+         
             $table->timestamps();
         });
     }
