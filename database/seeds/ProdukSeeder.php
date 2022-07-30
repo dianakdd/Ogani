@@ -39,7 +39,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'nama' => 'Sayur Brokoli',
             'deskripsi' => 'Sayuran segar organik',
-            'gambar' => 'https://cdn0-production-images-kly.akamaized.net/LkUD7TDri7My6UwxuDi-4WXYSuM=/1200x900/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1611131/original/028108800_1496300267-Brokoli.jpg',
+            'gambar' => 'https://asset.kompas.com/crops/m-YUetAhwbW20MG6s1FFh4UQO5c=/0x0:1000x667/750x500/data/photo/2021/05/27/60af45e4f39c8.jpg',
             'harga' => 15000,
             'stok' => 15,
             'kategori_id' => 2,
@@ -55,7 +55,7 @@ class ProdukSeeder extends Seeder
         Produk::create([
             'nama' => 'Daging Sapi',
             'deskripsi' => 'Daging sapi segar',
-            'gambar' => 'https://cdn1-production-images-kly.akamaized.net/9lD62K-gsj5hoCKaXHtzcUaRQkU=/1200x900/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3133148/original/027517900_1589942784-Raw_Fresh_Meat_With_Rosemary.jpg',
+            'gambar' => 'https://res.cloudinary.com/dk0z4ums3/image/upload/v1605524896/attached_image/mengolah-daging-sapi-dengan-benar.jpg',
             'harga' => 50000,
             'stok' => 5,
             'kategori_id' => 3,

@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index');
-});
+use App\Http\Controllers\HomeController;
+
+// Route::get('/', function () {
+//     return view('pages.index');
+// });
+
+Route::get('/', 'HomeController@index');
 
 
 
