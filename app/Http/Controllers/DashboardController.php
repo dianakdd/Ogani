@@ -19,7 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $produk = Produk::paginate(5);
-
+        $kategori = Kategori::firstWhere('active', 1);
         return view('admin.index', compact('produk'));
     }
 
@@ -44,11 +44,12 @@ class DashboardController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
             'deskripsi' => 'required',
             'gambar' => 'required|mimes:png,jpeg,jpg|max:2048',
             'harga' => 'required',
             'stok' => 'required',
+            'kategori_id' => 'required',
         ]);
 
         $NamaGambar = time() . '.' . $request->gambar->extension();
@@ -57,12 +58,12 @@ class DashboardController extends Controller
 
         $produk = new Produk;
 
-        $produk->name = $request->name;
+        $produk->nama = $request->nama;
         $produk->deskripsi = $request->deskripsi;
         $produk->gambar = $NamaGambar;
         $produk->harga = $request->harga;
         $produk->stok = $request->stok;
-
+        $produk->kategori_id = $request->kategori_id;
         $produk->save();
 
 
