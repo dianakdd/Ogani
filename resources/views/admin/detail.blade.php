@@ -31,7 +31,7 @@
                         </tbody>
                     </table>
                 </div>
-                <a href="/produk" class="btn btn-info btn-lg  btn-sm">kembali</a>
+                <a href="/dashboard" class="btn btn-info btn-lg  btn-sm">kembali</a>
             </div>
         </div>
         {{-- <div class="card">
@@ -40,7 +40,7 @@
                 <h2>{{$produk->judul}}</h2>
                 <p class="card-text">{{$produk->ringkasan, 20}}</p>
                 <p class="card-text">Tahun Terbit: {{$produk->tahun, 20}}</p>
-                <a href="/produk" class="btn btn-info btn-sm">kembali</a>
+                <a href="/dashboard" class="btn btn-info btn-sm">kembali</a>
             </div>
     </div> --}}
     @endsection

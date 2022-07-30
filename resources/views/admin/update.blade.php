@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <form action="/produk/{{ $produk->id }}" method="POST" enctype="multipart/form-data">
+    <form action="/dashboard/{{ $produk->id }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="col-12 grid-margin stretch-card">
