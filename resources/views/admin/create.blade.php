@@ -73,7 +73,7 @@
                             value="{{ old('kategori_id') }}">
                             <option value="">Silahkan pilih kategori</option>
                             @foreach ($kategori as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
                             @endforeach
                         </select>
 

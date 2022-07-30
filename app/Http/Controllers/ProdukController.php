@@ -18,7 +18,7 @@ class ProdukController extends Controller
     {
         $produk = Produk::all();
         $kategori = Kategori::all();
-        return view('admin.index', compact('produk', 'kategori'));
+        return view('admin.produk.index', compact('produk', 'kategori'));
     }
 
     /**
@@ -29,7 +29,8 @@ class ProdukController extends Controller
     public function create()
     {
         $produk = Produk::all();
-        return view('admin.create', compact('produk'));
+        $kategori = Kategori::all();
+        return view('admin.create', compact('produk', 'kategori'));
     }
 
     /**

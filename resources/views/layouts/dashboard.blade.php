@@ -68,8 +68,8 @@
                                 class="pcoded-mtext">Transaction</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/member" class="nav-link "><span class="pcoded-micon"><i
-                                    class="feather icon-home"></i></span><span class="pcoded-mtext">Member</span></a>
+                        <a href="/kategori" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-home"></i></span><span class="pcoded-mtext">Kategori</span></a>
                     </li>
 
                 </ul>

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Produk;
 use File;
+use App\Produk;
+use App\Kategori;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
 class DashboardController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,7 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $produk = Produk::paginate(5);
-       
+
         return view('admin.index', compact('produk'));
     }
 
@@ -30,7 +31,8 @@ class DashboardController extends Controller
     public function create()
     {
         $produk = Produk::all();
-        return view('admin.create', compact('produk'));
+        $kategori = Kategori::all();
+        return view('admin.create', compact('produk', 'kategori'));
     }
 
     /**
@@ -48,11 +50,11 @@ class DashboardController extends Controller
             'harga' => 'required',
             'stok' => 'required',
         ]);
-  
-        $NamaGambar = time().'.'.$request->gambar->extension();  
-   
+
+        $NamaGambar = time() . '.' . $request->gambar->extension();
+
         $request->gambar->move(public_path('image'), $NamaGambar);
-   
+
         $produk = new Produk;
 
         $produk->name = $request->name;
@@ -62,7 +64,7 @@ class DashboardController extends Controller
         $produk->stok = $request->stok;
 
         $produk->save();
-        
+
 
 
         return redirect('/dashboard')->withSuccess('Product Baru Ditambahkan!');
@@ -110,19 +112,18 @@ class DashboardController extends Controller
         ]);
 
         $produk = produk::find($id);
-            if ($request->has('gambar')){
-                $path = "image/";
-                File::delete($path . $produk->gambar);
+        if ($request->has('gambar')) {
+            $path = "image/";
+            File::delete($path . $produk->gambar);
 
-                $NamaGambar = time().'.'.$request->gambar->extension();  
-   
-                $request->gambar->move(public_path('image'), $NamaGambar);
-        
-                $produk->gambar = $NamaGambar;
+            $NamaGambar = time() . '.' . $request->gambar->extension();
 
-                $produk->save();
+            $request->gambar->move(public_path('image'), $NamaGambar);
 
-            }
+            $produk->gambar = $NamaGambar;
+
+            $produk->save();
+        }
 
         $produk->name = $request->name;
         $produk->deskripsi = $request->deskripsi;
@@ -152,4 +153,3 @@ class DashboardController extends Controller
         return redirect('/dashboard')->withWarning('Product Dihapus!');
     }
 }
-
