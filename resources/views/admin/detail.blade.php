@@ -10,11 +10,16 @@
 
 @section('content')
     <div class="row">
-        <img src="{{ asset('/img/categories/cat-1.jpg') }}" style="" class="col-lg-6" alt="...">
+        @if (file_exists(public_path('image' . '/' . $produk->gambar)))
+            <img src="{{ asset('/image' . '/' . $item->gambar) }}" style="" class="col-lg-6" alt="...">
+        @else
+            <img src="{{ $produk->gambar }}" style="" class="col-lg-6" alt="...">
+        @endif
+
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">{{ $produk->name }}</h4>
+                    <h4 class="card-title">{{ $produk->nama }}</h4>
                     <p class="card-description">{{ $produk->deskripsi }}</p>
                     <table class="table">
                         <thead>

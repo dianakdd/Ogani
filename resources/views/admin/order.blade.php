@@ -25,7 +25,7 @@
                             <th> Email</th>
                             <th> Alamat </th>
                             <th> Total Pembelian </th>
-                            <th>Pembayaran</th>
+                            <th>Pengiriman</th>
                             <th>Bank</th>
                             <th>Rekening</th>
                             <th>Tanggal</th>
@@ -43,7 +43,7 @@
                                 <td> {{ $item->user->email }} </td>
                                 <td> {{ $item->alamat }} </td>
                                 <td> {{ rupiah($item->totalHrg) }} </td>
-                                <td> {{ $item->payment }} </td>
+                                <td> {{ $item->pengiriman }} </td>
                                 <td> {{ $item->bank }} </td>
                                 <td> {{ $item->noRek }} </td>
                                 <td> {{ $item->tanggal }} </td>

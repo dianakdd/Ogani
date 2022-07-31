@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Connect Plus</title>
+    <title>Ogani | DashBoard</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('/admin/vendorsadmin/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/admin/vendorsadmin/flag-icon-css/css/flag-icon.min.css') }}">

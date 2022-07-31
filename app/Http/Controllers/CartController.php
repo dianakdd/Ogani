@@ -168,7 +168,7 @@ class CartController extends Controller
         DB::beginTransaction();
         $order = Order::create([
             'tanggal' => now()->format('Y-m-d'),
-            'payment' => $request->payment,
+            'pengiriman' => $request->pengiriman,
             'bank' => $request->bank,
             'noRek' => $request->noRek,
             'totalHrg' => $carts ->total,

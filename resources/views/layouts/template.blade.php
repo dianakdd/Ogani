@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>Ogani | Landing</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -121,9 +121,14 @@
                                     <span class="arrow_carrot-down"></span>
                                     <ul>
                                         <li>
-                                            <a href="/profile/{{ Auth::user()->id }}" class="dropdown-item"><i
-                                                    class="fa fa-user"></i>
-                                                Profile</a>
+                                            @if (Auth::user()->is_admin == 1)
+                                                <a href="/dashboard" class="dropdown-item"><i class="fa fa-user"></i>
+                                                    Dashboard</a>
+                                            @else
+                                                <a href="/profile/{{ Auth::user()->id }}" class="dropdown-item"><i
+                                                        class="fa fa-user"></i>
+                                                    Profile</a>
+                                            @endif
                                         </li>
                                         <li>
                                             <a href="{{ route('logout') }}" class="dropdown-item"
@@ -191,7 +196,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            <a href="/"><img src="/img/logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: 60-49 Road 11378 New York</li>

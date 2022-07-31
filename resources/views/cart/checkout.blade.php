@@ -8,9 +8,22 @@
                 <form action="/cart/confirm" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="produk_id">Payment</label>
-                        <input name="payment" id="payment" class="form-control" type="number">
-                        @error('payment')
+                        <label for="user_id">User</label>
+                        <input disabled name="user_id" id="user_id" class="form-control" value="{{ $userdata->name }}">
+                        @error('user_id')
+                            <div class="alert alert-danger alert-dismissible">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="pengiriman">Pengiriman</label>
+                        <select name="pengiriman" id="pengiriman" class="form-control" value="{{ old('pengiriman') }}">
+                            <option value="">Silahkan pilih Pengiriman</option>
+
+                            <option value="Express">Express</option>
+                            <option value="Reguler">Reguler</option>
+
+                        </select>
+                        @error('pengiriman')
                             <div class="alert alert-danger alert-dismissible">{{ $message }}</div>
                         @enderror
                     </div>
@@ -43,13 +56,7 @@
                             <div class="alert alert-danger alert-dismissible">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="user_id">User</label>
-                        <input disabled name="user_id" id="user_id" class="form-control" value="{{ $userdata->name }}">
-                        @error('user_id')
-                            <div class="alert alert-danger alert-dismissible">{{ $message }}</div>
-                        @enderror
-                    </div>
+
                     <button type="submit" class="btn btn-primary">Confirm</button>
                 </form>
             </div>
