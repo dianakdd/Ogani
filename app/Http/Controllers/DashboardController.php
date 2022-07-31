@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use File;
+use App\User;
 use App\Produk;
 use App\Kategori;
 use Illuminate\Http\Request;
+use App\Charts\ProductChart;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
 class DashboardController extends Controller
 {
+    function randomColour() {
+   
+        $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+        $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+        return $color;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +27,28 @@ class DashboardController extends Controller
     public function index()
     {
         $produk = Produk::paginate(5);
-        $kategori = Kategori::firstWhere('active', 1);
-        return view('admin.index', compact('produk'));
+
+        $kategori = Kategori::all();
+        $arr = array();
+        $arrclr = collect([]);
+        $data = collect([]);
+
+        for ($i=0; $i <$kategori->count(); $i++) { 
+        array_push($arr,$kategori[$i]->nama);
+        $randomColor =  DashboardController::randomColour();
+        $kategoriId = Kategori::where('nama',$kategori[$i]->nama) -> first()->id;
+        $data->push(Produk::where('kategori_id', $kategoriId)->count());
+        $arrclr->push($randomColor);
+        
+        }
+        $chart = new ProductChart;
+        $chart->labels($arr);
+        $dataset = $chart->dataset('My dataset', 'doughnut', $data);
+        $chart->displayAxes(false, false);
+        $dataset->backgroundColor($arrclr);
+        $dataset->color($arrclr);
+      
+        return view('admin.index', compact('produk','chart'));
     }
 
     /**
@@ -43,6 +71,7 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'nama' => 'required',
             'deskripsi' => 'required',
@@ -92,7 +121,10 @@ class DashboardController extends Controller
     public function edit($id)
     {
         $produk = Produk::find($id);
-        return view('admin.update', compact('produk'));
+       
+        $kategori = Kategori::all();
+        return view('admin.update', compact('produk', 'kategori'));
+       
     }
 
     /**
@@ -105,13 +137,14 @@ class DashboardController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'required|mimes:png,jpeg,jpg|max:2048',
+            'gambar' => 'mimes:png,jpeg,jpg|max:2048',
             'harga' => 'required',
             'stok' => 'required',
+            'kategori_id' => 'required',
         ]);
-
+    
         $produk = produk::find($id);
         if ($request->has('gambar')) {
             $path = "image/";
@@ -126,13 +159,15 @@ class DashboardController extends Controller
             $produk->save();
         }
 
-        $produk->name = $request->name;
+        
+        $produk->nama = $request->nama;
         $produk->deskripsi = $request->deskripsi;
+     
         $produk->harga = $request->harga;
         $produk->stok = $request->stok;
-
+        $produk->kategori_id = $request->kategori_id;
         $produk->save();
-
+       
         return redirect('/dashboard')->withSuccess('Product Berhasil Di ubah!');
     }
 

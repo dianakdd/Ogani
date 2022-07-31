@@ -8,20 +8,38 @@
         return $hasil_rupiah;
     }
     @endphp
-    <a type="button" class="btn btn-success  ml-2" href="/dashboard/create">Tambahkan Data</a><br><br>
+
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="container-fluid bg-white p-4">
+            <h4 class="text-dark">Jumlah Barang</h4>
+            <div class="col-lg-12 grid-margin">
+
+
+
+                {!! $chart->container() !!}
+            </div>
+        </div>
+
+
+
+    </div>
     <div class="col-lg-12 grid-margin stretch-card">
 
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Produk</h4>
+                <a type="button" class="btn btn-success  ml-2" href="/dashboard/create">Tambahkan Data</a>
                 </p>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th> Gambar </th>
                             <th> Nama </th>
+                            <th> Deskripsi </th>
                             <th> Stok </th>
-                            <th></th>
+                            <th>Harga</th>
+                            <th>Kategori</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,14 +57,13 @@
                                 <td> {{ $item->deskripsi }} </td>
                                 <td> {{ $item->stok }} </td>
                                 <td> {{ rupiah($item->harga) }} </td>
-                                <td> {{ $item->kategori_id }} </td>
+                                <td> {{ $item->kategori->nama }} </td>
                                 <td>
                                     <form action="/dashboard/{{ $item->id }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <a href="/dashboard/{{ $item->id }}"
-                                            class="btn btn-outline-success btn-sm">Lebih
-                                            Detailnya</a>
+                                            class="btn btn-outline-success btn-sm">Detail</a>
                                         <a href="/dashboard/{{ $item->id }}/edit"
                                             class="btn btn-outline-warning btn-sm">Edit</a>
                                         <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm">
@@ -79,4 +96,8 @@
             white-space: nowrap;
         }
     </style>
+@endpush
+@push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    {!! $chart->script() !!}
 @endpush

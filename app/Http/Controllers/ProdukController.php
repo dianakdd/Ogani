@@ -45,10 +45,29 @@ class ProdukController extends Controller
 
     public function show($id){
         $products = Produk::find($id);
-        // dd( $products);
-        $counts = Cart::count();
-        $total = Cart::sum('harga');
-        return view('pages.detail', compact('products','counts', 'total'));
+        if(Auth::user()){
+            $user = Auth::id();
+            $usercart =Cart::where('user_id', $user)->first();
+            if($usercart){
+                $cartid =$usercart ->id;
+                $counts = CartDetail::where('cart_id', $cartid)->count();
+                $total = $usercart ->total;
+            }else{
+                $counts = 0;
+                $total = 0;
+            }
+           
+        }else{
+          
+           
+          
+            $counts = 0;
+            $total = 0;
+            
+
+            }
+            return view('pages.detail', compact('products', 'counts', 'total'));
+        
     }
 
 }

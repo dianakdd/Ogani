@@ -45,6 +45,16 @@ Route::put('/profile/{user_id}', 'ProfileController@update');
 
 
 Route::group(['middleware' => ['is_admin']], function () {
-    Route::resource('dashboard', 'DashboardController');
+   
+    Route::get('/order', 'OrderController@index');
+    Route::get('/dashboard', 'DashboardController@index');
+    Route::post('/dashboard', 'DashboardController@store');
+    Route::get('/dashboard/create', 'DashboardController@create');
+  
+    Route::patch('/dashboard/{dashboard}', 'DashboardController@update');
+    Route::get('/dashboard/{dashboard}', 'DashboardController@show');
+    Route::get('/dashboard/{dashboard}/edit', 'DashboardController@edit');
+    Route::delete('/dashboard/{dashboard}', 'DashboardController@destroy');
     Route::resource('kategori', 'KategoriController');
+
 });

@@ -11,32 +11,32 @@
 @section('content')
     <form action="/dashboard/{{ $produk->id }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('put')
+        {{-- @method('PUT') --}}
+        {{ method_field('PATCH') }}
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Update Data</h4>
+                    <h4 class="card-title">Tambahkan Data</h4>
                     <form class="forms-sample">
                         <div class="form-group">
-                            <label for="name">Nama Buah</label>
-                            <input type="text" class="form-control" value="{{ old('name', $produk->name) }}"
-                                name="name" id="name" placeholder="Nama Buah">
-                            @error('name')
+                            <label for="nama">Nama Buah</label>
+                            <input type="text" class="form-control" value="{{ $produk->nama }}" name="nama"
+                                id="nama" placeholder="Nama Buah">
+                            @error('nama')
                                 <div class="alert alert-danger alert-dismissible">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="deskripsi">Deskripsi</label>
-                            <textarea class="form-control" value="{{ old('deskripsi', $produk->deskripsi) }}" name="deskripsi" id="deskripsi"
-                                rows="4"></textarea>
+                            <textarea class="form-control" name="deskripsi" id="deskripsi" rows="4">{{ $produk->deskripsi }}</textarea>
                             @error('deskripsi')
                                 <div class="alert alert-danger alert-dismissible">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label>Gambar</label>
+                            <label>File upload</label>
                             <input type="file" name="gambar" class="file-upload-default">
                             <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" disabled
@@ -52,8 +52,8 @@
 
                         <div class="form-group">
                             <label for="harga">Harga (/kg)</label>
-                            <input type="text" class="form-control" value="{{ old('harga', $produk->harga) }}"
-                                name="harga" id="harga" placeholder="Harga (/kg)">
+                            <input type="text" class="form-control" value="{{ $produk->harga }}" name="harga"
+                                id="harga" placeholder="Harga (/kg)">
                             @error('harga')
                                 <div class="alert alert-danger alert-dismissible">{{ $message }}</div>
                             @enderror
@@ -61,15 +61,27 @@
 
                         <div class="form-group">
                             <label for="stok">Stok</label>
-                            <input type="text" class="form-control" value="{{ old('stok', $produk->stok) }}"
-                                name="stok" id="stok" placeholder="Stok">
+                            <input type="text" class="form-control" value="{{ $produk->stok }}" name="stok"
+                                id="stok" placeholder="Stok">
                             @error('stok')
                                 <div class="alert alert-danger alert-dismissible">{{ $message }}</div>
                             @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label for="kategori_id">Kategori</label>
+                            <select name="kategori_id" id="kategori_id" class="form-control">
+                                <option value="">Silahkan pilih kategori</option>
+                                <option value="{{ $produk->kategori_id }}" selected>{{ $produk->kategori->nama }}</option>
+                                @foreach ($kategori as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
+
                     </form>
                 </div>
             </div>

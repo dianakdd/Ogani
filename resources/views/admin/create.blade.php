@@ -66,20 +66,8 @@
                             @enderror
                         </div>
 
-<<<<<<< HEAD
-                    <div class="form-group">
-                        <label for="stok">Kategori</label>
-                        <select name="kategori_id" id="kategori_id" class="form-control"
-                            value="{{ old('kategori_id') }}">
-                            <option value="">Silahkan pilih kategori</option>
-                            @foreach ($kategori as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-=======
                         <div class="form-group">
-                            <label for="stok">Kategori</label>
+                            <label for="kategori_id">Kategori</label>
                             <select name="kategori_id" id="kategori_id" class="form-control"
                                 value="{{ old('kategori_id') }}">
                                 <option value="">Silahkan pilih kategori</option>
@@ -89,10 +77,9 @@
                             </select>
 
                         </div>
->>>>>>> 3944f1cd965dc12ea5094395fcb2894bd20fcd68
 
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
+
                     </form>
                 </div>
             </div>
