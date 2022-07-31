@@ -14,7 +14,7 @@ class AddIdToReviewTable extends Migration
     public function up()
     {
         Schema::table('review', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            
         });
     }
 
@@ -26,7 +26,7 @@ class AddIdToReviewTable extends Migration
     public function down()
     {
         Schema::table('review', function (Blueprint $table) {
-            $table->dropColumn('id');
+            
         });
     }
 }

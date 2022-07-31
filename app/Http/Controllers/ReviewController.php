@@ -33,21 +33,18 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_review' => 'required',
-            'produk_id' => 'required',
-            'user_id' => 'required',
             'review' => 'required',
             'skor' => 'required',
         ]);
 
         $query = DB::table('review')->insert([
             "nama_review" => Auth::user()->name,
-            "produk_id" => $request->produk-id,
+            "produk_id" => $request->produk_id,
             "user_id" => Auth::user()->id,
             "review" => $request->review,
             "skor" => $request->skor
         ]); 
-        return redirect('pages.detail'.$request->produk_id);
+        return redirect('');
     
     }
 

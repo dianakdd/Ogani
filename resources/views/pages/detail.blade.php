@@ -76,7 +76,7 @@
                                 @csrf
                                 <div class="checkout__input">
                                     <p>Komentar<span>*</span></p>
-                                    <input class="form-control" id="review" name="review" placeholder="Tulis komentar">
+                                    <textarea class="form-control" id="review" name="review" rows="4"></textarea>
                                 </div>
                                 @error('review')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -90,7 +90,7 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
 
-                                <button type="submit" class="site-btn">Review</button>
+                                <button href="" type="submit" class="site-btn">Review</button>
                             </form>
     
                         </div>
@@ -136,4 +136,18 @@
         </div>
     </section>
     <!-- Related Product Section End --> --}}
+
+    @push('script')
+    <script src="https://cdn.tiny.cloud/1/00799zeprcot5j37bz733m0xyvdsybd7vvm19spjr60pkbuc/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+          selector: 'textarea',
+          plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+          toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+          toolbar_mode: 'floating',
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'Author name',
+        });
+      </script>
+    @endpush
 @endsection
