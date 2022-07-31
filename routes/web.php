@@ -22,6 +22,7 @@ Route::get('/', 'HomeController@index')->name('homepage');
 
 Route::get('/produk/{id}','ProdukController@show');
 Route::get('/produk','ProdukController@index')->name('produklist');
+Route::resource('review', 'ReviewController');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart', 'CartController@index');

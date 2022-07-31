@@ -22,7 +22,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3>{{ $products->nama }}</h3>
-                        <div class="product__details__rating">
+                        <div href="" class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -59,7 +59,49 @@
             </div>
 
         </div>
+
+        <div class="col-lg-12">
+            <div class="product__details__tab">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="" id="tabs-1" role="tab"
+                            aria-selected="false">Reviews <span></span></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active " id="tabs-1" role="tabpanel">
+                        <div class="product__details__tab__desc">
+                            {{-- <h6 class="text-center">Review User</h6> --}}
+                            <form action="/review" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="checkout__input">
+                                    <p>Komentar<span>*</span></p>
+                                    <input class="form-control" id="review" name="review" placeholder="Tulis komentar">
+                                </div>
+                                @error('review')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                <input type="hidden" id="produk_id" name="produk_id" value="{{$products->id}}" >
+                                <div class="checkout__input">
+                                    <p>Rating<span>*</span></p>
+                                    <input class="form-control" id="skor" name="skor" placeholder="Rate (1-5)">
+                                </div>
+                                @error('skor')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
+                                <button type="submit" class="site-btn">Review</button>
+                            </form>
+    
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </section>
+
+
     <!-- Product Details Section End -->
 
     {{-- <!-- Related Product Section Begin -->

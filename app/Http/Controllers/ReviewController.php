@@ -3,21 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Produk;
+use App\review;
+use App\User;
+use Auth;
+use File;
+use DB;
+
+
 
 class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,7 +32,23 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_review' => 'required',
+            'produk_id' => 'required',
+            'user_id' => 'required',
+            'review' => 'required',
+            'skor' => 'required',
+        ]);
+
+        $query = DB::table('review')->insert([
+            "nama_review" => Auth::user()->name,
+            "produk_id" => $request->produk-id,
+            "user_id" => Auth::user()->id,
+            "review" => $request->review,
+            "skor" => $request->skor
+        ]); 
+        return redirect('pages.detail'.$request->produk_id);
+    
     }
 
     /**
@@ -56,7 +70,19 @@ class ReviewController extends Controller
      */
     public function edit($id)
     {
-        //
+        $request->validate([
+            'review' => 'required',
+            'skor' => 'required',
+        ]);
+
+        $user = DB::table('users')->where('id', $id)->first();
+        $query = DB::table('review')
+                    ->where('id', $id)
+                    ->update([
+                        "review" => $request["review"],
+                        "skor" => $request["skor"]          
+        ]); 
+        return redirect('');
     }
 
     /**
@@ -79,6 +105,10 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $komen = DB::table('review')->where('id', $id)->first();
+        $produk_id = $komen->produk_id;
+        $komen->delete();
+        return redirect()->route('/produk/'.$produk_id);
     }
+
 }
