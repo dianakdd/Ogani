@@ -115,7 +115,7 @@ class CartController extends Controller
         $user = Auth::id();
         $usercart = Cart::where('user_id', $user)->first();
         $cartid = $usercart->id;
-        $counts = Cart::count();
+        $counts = CartDetail::count();
         $products = Produk::all();
         $carts = CartDetail::where('cart_id', $cartid)->get();
         $total = $usercart->total;
@@ -128,17 +128,53 @@ class CartController extends Controller
         $request->validate([
             'jml' => 'required',
         ]);
-    
-        $cart = CartDetail::where('id', $request->id)->update([
+        $user = Auth::id();
+        $usercart = Cart::where('user_id', $user)->first();
+        $cartid = $usercart->id;
+        
+       $newtotal = 0;
+        
+      
+       
+        CartDetail::where('id', $request->id)->update([
             'jml' => $request->jml,
+        
           
         ]);
+        $carts = CartDetail::where('cart_id', $cartid)->get();
+        foreach ($carts as $val) {
+           
+            $harga = $val->harga;
+            $jml = $val->jml;
+            $total = $harga * $jml;
+            $newtotal += $total;
+           
+        }
+     
+        $save = Cart::where('user_id', $user)->update([
+            'total' => $newtotal,
+        
+          
+        ]);
+   
+       
         return redirect('/cart')->withSuccess('Product Berhasil Dirubah!');;
     }
 
     public function destroy($id)
     {
         $cart = CartDetail::find($id);
+       $cartid= $cart->cart_id;
+       $harga = $cart->harga;
+       $total = Cart::find($cartid)->total;
+
+    $newtotal = $total -$harga;
+  
+  
+        $up = Cart::where('id', $cartid )->update([
+            'total' => $newtotal,
+          
+        ]);
         $cart->delete();
         return redirect('/cart')->withWarning('Product Dihapus!');
     }
