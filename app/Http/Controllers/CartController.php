@@ -170,7 +170,7 @@ class CartController extends Controller
        $oldTotal = $harga * $jml;
        $total = Cart::find($cartid)->total;
 
-    $newtotal = $total -$harga;
+    $newtotal = $total - $oldTotal;
   
   
         $up = Cart::where('id', $cartid )->update([
