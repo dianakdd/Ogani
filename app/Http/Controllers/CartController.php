@@ -166,6 +166,8 @@ class CartController extends Controller
         $cart = CartDetail::find($id);
        $cartid= $cart->cart_id;
        $harga = $cart->harga;
+       $jml = $cart->jml;
+       $oldTotal = $harga * $jml;
        $total = Cart::find($cartid)->total;
 
     $newtotal = $total -$harga;
@@ -186,7 +188,7 @@ class CartController extends Controller
       
         $usercart = Cart::where('user_id', $user)->first();
         $cartid = $usercart->id;
-        $counts = Cart::count();
+        $counts = CartDetail::count();
         $products = Produk::all();
         $carts = CartDetail::where('cart_id', $cartid)->get();
         $total = $usercart->total;
