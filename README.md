@@ -18,3 +18,9 @@ E-commerce
 Akun Admin :\
 email       : admin@test.com\
 password    : 12345678
+
+
+##Jalankan
+1. composer install
+kalau tidak bisa gunakan #composer update
+2. php artisan migrate:fresh --seed
