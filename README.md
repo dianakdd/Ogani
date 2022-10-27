@@ -1,7 +1,10 @@
   
 
-# Final Project
-## Kelompok 12
+# Final Project (Kelompok 12)
+
+## Jalankan
+1. composer install, kalau tidak bisa gunakan #composer update
+2. php artisan migrate:fresh --seed
 
 ## Anggota Kelompok
 - Affan Abdullah Izzuddin
@@ -19,8 +22,3 @@ Akun Admin :\
 email       : admin@test.com\
 password    : 12345678
 
-
-##Jalankan
-1. composer install
-kalau tidak bisa gunakan #composer update
-2. php artisan migrate:fresh --seed
